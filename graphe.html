@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 1</title>
+</head>
+<body>
+    <h1>Exercice 1</h1>
+
+<h1>informations sur les aéroports</h1>
+
+<div id="graph-container">
+    <!-- Remplacez "img/viz.svg" par le chemin réel vers votre fichier SVG -->
+    <img src="img/viz (2).svg"/>
+</div>
+<div id="graph-container">
+    <!-- Remplacez "img/viz.svg" par le chemin réel vers votre fichier SVG -->
+    <img src="img/praphe2.svg"/>
+</div>
+
+<div id="sparql-query">
+    <h2>SPARQL Query</h2>
+    <pre>
+SELECT ?museum ?museumLabel ?population ?country ?countryLabel ?coordinates
+WHERE
+{
+  ?museum wdt:P31/wdt:P279* wd:Q33506;
+          wdt:P131 ?city;
+  ?city wdt:P1082 ?population;
+        wdt:P17 ?country;
+        wdt:P625 ?coordinates.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+ORDER BY DESC(?population)
+LIMIT 10
+    </pre>
+    <iframe style="width: 80vw; height: 50vh; border: none;" src="https://query.wikidata.org/embed.html#SELECT%20%3Fairport%20%3FairportLabel%20%3Fpopulation%20%3Fcountry%20%3FcountryLabel%20%3Fcoordinates%0AWHERE%0A%7B%0A%20%20%3Fairport%20wdt%3AP31%2Fwdt%3AP279*%20wd%3AQ1248784%3B%20%20%23%20find%20instances%20of%20subclasses%20of%20airport%0A%20%20%20%20%20%20%20%20%20%20%20wdt%3AP17%20%3Fcountry%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20in%20a%20country%0A%20%20%20%20%20%20%20%20%20%20%20wdt%3AP131%20%3Fcity.%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20located%20in%20a%20city%0A%20%20%3Fcity%20wdt%3AP1082%20%3Fpopulation%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20city%20population%0A%20%20%20%20%20%20%20%20wdt%3AP625%20%3Fcoordinates.%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20city%20coordinates%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cen%22.%20%7D%0A%7D%0AORDER%20BY%20DESC(%3Fpopulation)%0ALIMIT%2010%0A" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+</div>
+
+</body>
+</html>
